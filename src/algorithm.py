@@ -1,4 +1,4 @@
-from sympy import Matrix, Symbol
+from sympy import Matrix, Symbol, linsolve
 
 # Creates a row containing the powers of the
 # line-number from the 1st to the (k + 1)th.
@@ -32,8 +32,7 @@ def augmented_matrix(k):
 # over n of degree k + 1.
 def formula(k):
   matrix = augmented_matrix(k)
-  matrix_rrel = matrix.rref()[0]
-  coefficients = matrix_rrel.col(-1)
+  coefficients, = linsolve(matrix)
 
   n = Symbol('n')
   return sum([
